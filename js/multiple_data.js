@@ -1,7 +1,7 @@
 var mapw = $(window).width(),
   maph = $(window).height();
-var width = 250,
-  height = 250;
+var width = 350,
+  height = 350;
 var margin = {
   top: 40,
   right: 40,
@@ -21,8 +21,8 @@ var selectedcity = null;
 
 var curPath = 0; //the path that is currently showing
 var projection = d3.geo.orthographic()
-  .scale(250 / 2.1)
-  .translate([125, 125])
+  .scale(350 / 2.1)
+  .translate([175, 175])
   .precision(2);
 var graticule = d3.geo.graticule();
 var myroute;
@@ -241,7 +241,7 @@ var mymain = function(data) {
 
   xScale = d3.time.scale()
     .domain([minDate, maxDate])
-    .range([mapw * 0.45, mapw * 0.9]);
+    .range([mapw * 0.55, mapw * 0.9]);
 
   var xAxis = d3.svg.axis()
     .scale(xScale)
@@ -303,7 +303,7 @@ var mymain = function(data) {
     .attr("stroke-width", "3px")
     .attr("fill", "none");
 
-  point = svg.append("g")
+/*  point = svg.append("g")
     .attr("class", "points")
     .selectAll("g")
     .data(d3.entries(places))
@@ -322,14 +322,11 @@ var mymain = function(data) {
       cont = true; //loop not started
       count = oneMove_default - 0.01; //to measure the interval
       flyto(getNode(places, nowNum), 3);
-    })
-
-
-  ;
+    });
 
 
   point.append("circle") //show circle on each point
-    .attr("r", 1.5);
+    .attr("r", 1.5);*/
 
   /*  point.attr("add", function(d,i){
       revGeocoding(d.value[1],d.value[0],"point"+i);
@@ -391,7 +388,7 @@ var mymain = function(data) {
 
   timeBase.append("rect")
     .attr("class", "timebaserect")
-    .attr("y", 17)
+    .attr("y", 22)
     .attr("x", -0.75)
     .attr("width", 1.5)
     .attr("height", 10)
@@ -399,13 +396,13 @@ var mymain = function(data) {
     .on("mouseover", function() {
       d3.select(this).attr("width", 4)
         .attr("x", -2)
-        .attr("y", 14.5)
+        .attr("y", 19.5)
         .attr("height", 15);
     })
     .on("mouseout", function() {
       d3.select(this).attr("width", 1.5)
         .attr("x", -0.75)
-        .attr("y", 17)
+        .attr("y", 22)
         .attr("height", 10);
     });
 
@@ -413,19 +410,19 @@ var mymain = function(data) {
 
 
   d3.select(".xaxis").append("rect")
-    .attr("x", mapw * 0.4)
-    .attr("y", 5)
-    .attr("width", mapw * 0.55)
+    .attr("x", mapw * 0.5)
+    .attr("y", 10)
+    .attr("width", mapw * 0.45)
     .attr("height", 40)
     .attr("stroke", "none")
     .attr("fill", "rgb(22,27,33)");
 
 
   d3.select(".xaxis").append("line")
-    .attr("x1", mapw * 0.4)
-    .attr("y1", 25)
+    .attr("x1", mapw * 0.5)
+    .attr("y1", 30)
     .attr("x2", mapw * 0.95)
-    .attr("y2", 25)
+    .attr("y2", 30)
     .attr("stroke-width", 1)
     .attr("stroke", "rgb(20,20,20)");
 
@@ -434,7 +431,7 @@ var mymain = function(data) {
     .append("rect")
     .attr("class", "timemark")
     .attr("width", 3)
-    .attr("height", 15).attr("y", 15)
+    .attr("height", 15).attr("y", 20)
     .attr("x", -1.5);
 
   initContent();
@@ -763,9 +760,9 @@ var mymain = function(data) {
 
 
 
-      point.attr("transform", function(d) { //rotate the nodes
+/*      point.attr("transform", function(d) { //rotate the nodes
         return "translate(" + projection(d.value) + ")";
-      });
+      });*/
 
 
 
@@ -871,7 +868,7 @@ var update = function(current) {
         .attr("class", "curroute_blur")
     */
 
-  $(".points").remove();
+/*  $(".points").remove();
   point = svg.append("g")
     .attr("class", "points")
     .selectAll("g")
@@ -892,13 +889,11 @@ var update = function(current) {
       count = oneMove_default - 0.0001; //to measure the interval
       flyto(getNode(places, nowNum), 3);
 
-    })
-
-  ;
+    });
 
   point.append("circle") //show circle on each point
     .attr("r", 1.5);
-
+*/
 
   $(".track").remove();
   track = svg.append("g") //red circle
@@ -965,7 +960,7 @@ var update = function(current) {
 
   timeBase.append("rect")
     .attr("class", "timebaserect")
-    .attr("y", 17)
+    .attr("y", 22)
     .attr("x", -0.75)
     .attr("width", 1.5)
     .attr("height", 10)
@@ -973,13 +968,13 @@ var update = function(current) {
     .on("mouseover", function() {
       d3.select(this).attr("width", 4)
         .attr("x", -2)
-        .attr("y", 14.5)
+        .attr("y", 19.5)
         .attr("height", 15);
     })
     .on("mouseout", function() {
       d3.select(this).attr("width", 1.5)
         .attr("x", -0.75)
-        .attr("y", 17)
+        .attr("y", 22)
         .attr("height", 10);
     });
 

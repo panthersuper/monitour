@@ -205,7 +205,7 @@ function resize(init) {
 
     d3.select("#nowpath_title")
       .append("p")
-      .text(thistype+": "+thisname);
+      .text(thistype[0]+": "+thisname);
 
     localcontrol = true;
 
