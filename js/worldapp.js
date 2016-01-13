@@ -25,6 +25,7 @@
             .range([1, data.length + 1]);
 
          return function(t) {
+         if(t>0.99)ani_play=false;
 
         averageday = Math.round((+dayfiltered)/(+localfilternum)*t);
         averagedis = Math.round((+disfiltered)/(+localfilternum)*t);
@@ -231,31 +232,14 @@
       })
       .interpolate("linear");
 
-   var thisrun = function(){
 
+   d3.select(window).on('resize', function() {
+      count1 = 0;
+      count2 = 0;
+      d3.selectAll(".overall_path").transition().delay(0);
+      resize();
+      finish_path();
+   });
 
-      d3.select(window).on('resize', function() {
-         count1 = 0;
-         count2 = 0;
-      });
-
-      var count1 = 0;
-      var count2 = 1;
-      d3.timer(function() {
-         if (count1 < 5) {
-            resize();
-            count1++;
-
-         } else if (count2 === 0) {
-            if(overallpath_on)
-            animate_path();
-            count2 = 1;
-         }
-
-
-      });
-
-
-   }
-
-thisrun();
+   var count1 = 0;
+   var count2 = 1;

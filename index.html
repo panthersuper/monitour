@@ -2,7 +2,6 @@
 <meta charset="utf-8">
 
 <head>
-
   <title>MONITOUR</title>
   <link href='css/font.css' rel='stylesheet' type='text/css'>
   <script src="js/d3.min.js"></script>
@@ -10,7 +9,6 @@
   <script src="js/jquery.min.js"></script>
   <script src='js/mapbox-gl.js'></script>
   <link href='css/mapbox-gl.css' rel='stylesheet' />
-  <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" type="text/css" href="css/mystyle.css">
   <script src='js/nprogress.js'></script>
   <link rel='stylesheet' href='css/nprogress.css'/>
@@ -46,7 +44,6 @@
         <img src="img/pre.png" class = "sm_control" id = "back">
         <img src="img/stop.png" class = "sm_control" id = "stop">
         <img src="img/continue.png" class = "sm_control" id = "next">
-
       </div>
 
       <div id = "device_icon">
@@ -71,85 +68,50 @@
         <p>Show Detail</p>
       </div>
 
+      <div id="control">
+<!--         <div id="mark_control"></div>
+-->
+<div id="title">
+</div>
+
+<div id="City">
+  <p>City</p>
+</div>
+
+<div id="location">
+</div>
+
+<div id="Coord">
+  <p>Coord</p>
+</div>
+<div id="Coordnum">
+</div>
+
+<div id="number"></div>
+
+<div class = "tobe_updated">
+  <div id="media">
+    <div id="media_update">
     </div>
   </div>
 
-  <div class="underbar_back">
-    <div id = "filter" class = "overall_map">
-      <p class = "filtertitle"><strong>DEVICE TYPE</strong></p>
-      <div class = "options">
-        <ul id = "showall">ALL</ul>
-        <ul id = "crt">CRT</ul>
-        <ul id = "lcd">LCD</ul>
-        <ul id = "printer">Printer</ul>
-      </div>
-    </div>
+  <svg id="overlap1" class="arrow prev_c">
+    <path d=" M 20 90
+    L 10 100
+    L 20 110
+    "/>
+  </svg>
 
-    <div id = "chapters" class = "overall_map">
-      <p class = "filtertitle"><strong>CHAPTERS</strong></p>
-        <div class="options_chap">
-          <ul id = "showall">ALL</ul>
-          <ul id = "mi">MI</ul>
-        </div>
-    </div>
+  <svg id="overlap2" class="arrow prev_c">
+    <path d=" M 10 90
+    L 20 100
+    L 10 110
+    "/>
+  </svg>
 
-
+  <div id="story" align=justify>
   </div>
-
-
-  <div class = "topbar">
-    <a href="http://senseable.mit.edu/"><img src="img/mit_logo.png" class = "mitlogo"></a>
-    <a href="http://www.ban.org/"><img src="img/ban_0_bw.png" class = "banlogo"></a>
-
-    <div class = "toptitle"><a href=""><p>MONITOUR</p></a></div>
-    <div class = "menu"><p>About</p></div>
-
-
-  </div>
-
-
-  <div id="control">
-    <div id="mark_control"></div>
-
-    <div id="title">
-    </div>
-
-    <div id="location">
-    </div>
-
-    <div id="Coord">
-      <p>Coord</p>
-    </div>
-    <div id="Coordnum">
-    </div>
-
-
-    <div id="number">
-
-    </div>
-    <div class = "tobe_updated">
-      <div id="media">
-        <div id="media_update">
-        </div>
-      </div>
-
-      <svg id="overlap1" class="arrow prev_c">
-        <path d=" M 20 90
-        L 10 100
-        L 20 110
-        "/>
-      </svg>
-
-      <svg id="overlap2" class="arrow prev_c">
-        <path d=" M 10 90
-        L 20 100
-        L 10 110
-        "/>
-      </svg>
-
-      <div id="story" align=justify>
-      </div>
-    </div>
+</div>
 <!--     <div id="next">
       <p>CONTINUE</p>
     </div>
@@ -159,263 +121,379 @@
     <div id="back">
       <p>BACK</p>
     </div>
- -->  </div>
-
-  <div class = "change_Map"><p>SATELLITE</p><p>STREET</p>
-
-    <div class = "change_map_mark"></div>
-  </div>
-  <div class = "zoomcontrol"><span id = "zoomin">+</span><span id = "zoomout">-</span>
-
-  </div>
-
-  <div id = "finishsign">You have finished this route!!!</div>
-
-  <div class="menucontent">
-    <p id = "intro">Introduction</p>
-    <p id = "team">Team Member</p>
-
-  </div>
+  -->  </div>
 
 
-  <div id="pre"></div>
-  
 
-  <div class = "overall_map">
-    <div class = "overlay"></div>
-    <div id='map0'></div>
-    <svg class = "allroutes"></svg>
-    <div class = "extra_info"></div>
-        <div id="stat" class = "overall_map">
+</div>
+</div>
+
+<div class="underbar_back">
+  <div id = "filter" class = "overall_map">
+    <p class = "filtertitle"><strong>DEVICE TYPE</strong></p>
+    <div class = "options">
+<!--       <ul id = "showall">ALL</ul>
+ -->      <ul id = "crt">CRT</ul>
+      <ul id = "lcd">LCD</ul>
+      <ul id = "printer">Printer</ul>
     </div>
-    <div class = "over_block"></div>
-    <div id = "background1"></div>
-
   </div>
 
-    <a href="http://senseable.mit.edu/"></a>
-    <a href="http://www.ban.org/"></a>
+  <div id = "chapters" class = "over`all_map">
+    <p class = "filtertitle"><strong>CHAPTERS</strong></p>
+    <div class="options_chap">
+<!--       <ul id = "showall">ALL</ul>
+ --><!--       <ul id = "mi">MI</ul>
+ -->    </div>
+  </div>
 
+  <div id = "stories" class = "overall_map">
+    <p class = "filtertitle"><strong>STORIES</strong></p>
+    <div class="options_story">
+<!--       <ul id = "showall">ALL</ul>
+ --><!--       <ul id = "mi">MI</ul>
+ -->    </div>
 
+  </div>
+  <div id = "allpath"  class = "overall_map">  
+    <p class = "filtertitle"><strong>ALL PATH</strong></p> 
+  </div>
 
-
-
-  <div class = "home">
-    <div id = "copyright"><p>Odow River, Agbogbloshie dump, Accra, Ghana. Copyright Kevin McElvaney, 2014.</p>
-      <div class = "home_links">
-        <p id = "indicateprj">Project by</p>
-        <a href = "http://senseable.mit.edu/"><span>MIT SENSEable City Lab :.::<img src="img/mit_logo.png" class = "mitlogo mitlogo_sm"></span></a>
-        <span> &nbsp; </span>
-        <span><strong>+</strong></span>
-        <span> &nbsp; </span>
-        <a href = "http://www.ban.org/"><span>Basel Action Network<img src="img/ban_0_bw.png" class = "banlogo banlogo_sm"></span></a>
-      </div>
-
+  <div id = "selectpath"  class = "overall_map">  
+    <p class = "filtertitle"><strong>SELECT PATH</strong></p> 
     </div>
-    <div class = "home_tb">
-      <H2 id = "home_title">MONI<span style = "font-size:59px;">T</span><span>OUR</span></H2>
-      <div class = "subtitle">
-        <p style = "color:rgb(220,220,220); ">Lead to the discovery of previously unknown international electronic waste</p>
-        <p style = "color:rgb(220,220,220); ">smuggling routes.</p>
-      </div>
-      <div id = "explore"><p>Explore</p></div>
-    </div>
-    <div id = "background0"></div>
+        <div id="tablepath" class = "overalltable">
 
   </div>
 
 
+  <div id = "overall_control"  class = "overall_map">
+        <img src="img/restart.png" class="sm_control sm_overwrite" id="next_ovr">
+        <img src="img/stop.png" class="sm_control sm_overwrite" id="stop_ovr">
+        <img src="img/skip.png" class="sm_control sm_overwrite" id="skip_ovr">
+
+  </div>
+
+</div>
 
 
-  <div class = "overall_info">
+<div class = "topbar">
+  <a href="http://senseable.mit.edu/"><img src="img/mit_logo.png" class = "mitlogo"></a>
+  <a href="http://www.ban.org/"><img src="img/ban_0_bw.png" class = "banlogo"></a>
 
-    <p id = "info_0" class = "hide">Every year countless electronic waste, including monitors, televisions, and laptops, have been smuggled abroad from the United States...
-    </br>
-    </br>
+  <div class = "toptitle"><p>MONITOUR</p></div>
+  <div class = "menu"><p>About</p></div>
 
-    <img src="img/wide_down.png" class = "arrowdown">
-    </p>
-    <p id = "info_1" class = "hide">We decided to track E-waste. GPS trackers were hidden in electronic equipments shipped abroad. Trackers periodically reported the location of each device, showing the global routes of electronic waste.
-    </br>
-    </br>
+
+</div>
+
+<div class = "change_Map"><p>SATELLITE</p><p>STREET</p>
+  <div class = "change_map_mark"></div>
+</div>
+
+<div class = "zoomcontrol"><span id = "zoomin">+</span><span id = "zoomout">-</span></div>
+
+<div id="routeinfobox">
+        <div class = "sub_sum">
+
+  <p class = "info_title" id = "box_title">TITLE</p>
+  <p class = "tra">
+    <span class = "_title">Tracker ID&nbsp;</span>
+    <span class = "_cont" id = "box_id">...</span>
+  </p>
+
+  </br>
+
+  <p class = "tra">
+    <span class = "_title">Overall Summary&nbsp;</span>
+    <span class = "_cont" id = "box_summary">...</span>
+  </p>
+
+  </br>
+
+  <div class = "tra">
+    <span class = "_title">Route Summary</span>
     
-    <img src="img/wide_down.png" class = "arrowdown">
-    </p>
-    <p id = "info_2" class = "hide">Let's follow our trackers to explore the e-waste smuggling route.
-    </br>
-    </br>
-    <img src="img/wide_down.png" class = "arrowdown">
-    </p>
-    <p id = "info_3">We tracked hundreds of e-waste devices, they were shipped mainly to Asia, and traveled a total of over 600,000 kilometers. </p>
+    <div class = "_cont" id = "box_rt_summary">
+        <div class = "sub_summary"> 
+          <img src="img/mit_logo.png" class="sub_img">
+          <p class = "sub_title">Stop 1</p>
+          <p class = "sub_des">Story on this stop...as described...</p>
 
+        </div>
 
+        <div class = "sub_summary"> 
+          <img src="img/mit_logo.png" class="sub_img">
+          <p class = "sub_title">Stop 1</p>
+          <p class = "sub_des">Story on this stop...as described...</p>
+
+        </div>
+
+        <div class = "sub_summary"> 
+          <img src="img/mit_logo.png" class="sub_img">
+          <p class = "sub_title">Stop 1</p>
+          <p class = "sub_des">Story on this stop...as described...</p>
+
+        </div>
+
+    </div>
   </div>
-
-
-
-
-  <div class = "hidden_info">
-
-    <div id = "abouttb">
-      <img src="img/cross.png">
-      <div>
-        <table>
-          <tr class = "head">
-            <td><h4>TRACKING E-WASTE SMUGGLING ROUTES ACROSS THE WORLD</h4></td>
-          </tr>
-          <tr>
-            <td><P align=justify>&nbsp;
-            </P></td>
-          </tr>
-          <tr>
-            <td><P align=justify>A joint project between the Basel Action Network and the MIT Senseable City Lab has led to the discovery of previously unknown international electronic waste routes departing from the United States.
-            </P></td>
-          </tr>
-          <tr>
-            <td><P align=justify>
-Printer, LCD and CRT monitors were embedded with GPS trackers capable of remotely reporting their location from overseas locations. These trackers revealed that most monitors were exported to Asia via ports in Vietnam, China, and Malaysia.
-            </P></td>
-          </tr>
-          <tr>
-            <td><P align=justify>
-On-the-ground investigations by BAN produced a clearer picture of these trade routes. E-waste enters the country in inter-modal containers through the port of Haiphong. Interviews with locals and eyewitness reports revealed that small riverboats smuggle an array of goods, including e-waste.
-            </P></td>
-          </tr>
-          <tr>
-            <td><P align=justify>
-While legitimate e-waste recycling helps reduce landfill contamination and raw material extraction, illegal handling of electronic waste raises the risk of water and soil pollution, human illness, and subsequent social costs to public health and agriculture. Our experiment demonstrates how relatively cheap technology can generate unique data needed by NGOs and Interpol to track such "hidden flows".
-            </P></td>
-          </tr>
-          <tr>
-            <td><P align=justify>
-Since the time of our experiment, the UN Organization on Drugs and Crime has confirmed that the Mong Cai border is a primary corridor for e-waste flowing from the US and EU into China, part of an estimated US$3.75 billion market for illegal e-waste.
-            </P></td>
-          </tr>
-
-          <tr>
-            <td><P>
-              Learn more about the smuggling trade here: 
-              <a href="http://video.ft.com/v/1555946620001" style="color:#0913bc">Video</a>.
-            </P></td>
-          </tr>
-
-        </table>
       </div>
-    </div>
 
-    <div id = "teamtb">
-      <img src="img/cross.png">
 
-      <table>
-        <tr class = "head">
-          <td><P><STRONG>TEAM</STRONG></P></td>
-        </tr>
-        <tr>
-          <td><h5>SENSEable City Lab :.::</h5></td>
-          <td><h5>Basel Action Network</h5></td>
-          <td><h5>Special thanks to</h5></td>
-        </tr>
-        <tr>
-          <td><p>Carlo Ratti <i>- Director</i></p></td>
-          <td><p>Jim Puckett</p></td>
-          <td><p>e-Recycling of California</p></td>
-        </tr>        <tr>
-          <td><p>Assaf Biderman</p></td>
-          <td><p>Colin Groark</p></td>
-          <td><p>Richard Howlett</p></td>
-        </tr>
-        <tr>
-          <td><p>Dietmar Offenhuber</p></td>
-          <td><p>Graham Kaplan</p></td>
-          <td><p>Eugene Lee</p></td>
-        </tr>
-        <tr>
-          <td><p>David Lee</p></td>
-          <td><p>Angelo Godbey</p></td>
-          <td><p></p></td>
-        </tr>
-        <tr>
-          <td><p>Mark Yen</p></td>
-          <td><p>Eric Hopson</p></td>
-          <td><p></p></td>
-        </tr>
-        <tr>
-          <td><p>David Perez</p></td>
-          <td><p>Monica Huang</p></td>
-          <td><p></p></td>
-        </tr>        <tr>
-          <td><p>Brandon Nadres</p></td>
-          <td><p></p></td>
-          <td><p></p></td>
-        </tr>        <tr>
-          <td><p>James Simard</p></td>
-          <td><p></p></td>
-          <td><p></p></td>
-        </tr>
-        </tr>        <tr>
-          <td><p>Youjin Shin</p></td>
-          <td><p></p></td>
-          <td><p></p></td>
-        </tr>
-        </tr>        <tr>
-          <td><p>Weng Hong Teh</p></td>
-          <td><p></p></td>
-          <td><p></p></td>
-        </tr>
-        </tr>        <tr>
-          <td><p>Wenzhe Peng</p></td>
-          <td><p></p></td>
-          <td><p></p></td>
-        </tr>
-        </tr>        <tr>
-          <td><p>Paul Bouisset</p></td>
-          <td><p></p></td>
-          <td><p></p></td>
-        </tr>
-        </tr>        <tr>
-          <td><p>Fabio Duarte</p></td>
-          <td><p></p></td>
-          <td><p></p></td>
-        </tr>
-      </table>
-    </div>
+  <div class = "infocontrol">
+    <div id = "start_route">FOLLOW ROUTE</div>
+    <div id = "view_report">VIEW BAN report</div>
+  </div>
+</div>
+
+<div id = "finishsign">This route had ended!</div>
+
+<div id="pre"></div>
+
+
+<div class = "overall_map">
+  <div class = "overlay"></div>
+  <div id='map0'></div>
+  <svg class = "allroutes"></svg>
+  <div class = "extra_info"></div>
+  <div id="stat" class = "overall_map"></div>
+
+  <!-- <div class = "over_block"></div> -->
+  <div id = "background1"></div>
+  <div id = "zoom_ovr">
+    <span id = "zoomin_ovr" class = "sm_control control_ovr">+</span>
+    <span id = "zoomout_ovr" class = "sm_control control_ovr">-</span>
+
 
   </div>
 
-    <div class="myhint">
-      <div class="hint overall"><p>Try to click/hover the paths or nodes</p></div>
-      <div class="hint globe individual"><p>You can go back to the overall map by clicking the globe</p></div>
-      <div class="hint changepath individual"><p>You can switch to other paths here.</p></div>
-      <div class="hint control individual"><p>Let's click continue/stop to control the journey.</p></div>
-      <div class="hint timeline individual"><p>Clickable timeline here.</p></div>
-      <div class="hint detail individual"><p>Try to show detail.</p></div>
+</div>
+
+<a href="http://senseable.mit.edu/"></a>
+<a href="http://www.ban.org/"></a>
+
+
+
+
+
+<div class = "home">
+  <div id = "copyright"><p>Odow River, Agbogbloshie dump, Accra, Ghana. Copyright Kevin McElvaney, 2014.</p>
+    <div class = "home_links">
+      <p id = "indicateprj">Project by</p>
+      <a href = "http://senseable.mit.edu/"><span>MIT SENSEable City Lab :.::<img src="img/mit_logo.png" class = "mitlogo mitlogo_sm"></span></a>
+      <span> &nbsp; </span>
+      <span><strong>+</strong></span>
+      <span> &nbsp; </span>
+      <a href = "http://www.ban.org/"><span>Basel Action Network<img src="img/ban_0_bw.png" class = "banlogo banlogo_sm"></span></a>
     </div>
 
-  <script type="text/javascript">
-  mapboxgl.accessToken = 'pk.eyJ1IjoicGFudGhlcnN1cGVyIiwiYSI6Il9JRlBXMkkifQ.4VOcpN_xI1jf1XxjnIZHmw';
+  </div>
+  <div class = "home_tb">
+    <H2 id = "home_title">MONI<span style = "font-size:59px;">T</span><span>OUR</span></H2>
+    <div class = "subtitle">
+      <p style = "color:rgb(220,220,220); ">Lead to the discovery of previously unknown international electronic waste</p>
+      <p style = "color:rgb(220,220,220); ">smuggling routes.</p>
+    </div>
+    <div id = "explore"><p>Explore</p></div>
+  </div>
+  <div id = "background0"></div>
 
-  var map = new mapboxgl.Map({
-    container: 'map',
-    style: 'mapbox://styles/mapbox/satellite-v8',
-    center: [-71.093613, 42.360277],
-    zoom: 5
-  });
+</div>
 
-  d3.select(".mapboxgl-control-container").remove();
 
-  var start = [-70, 33.928033];
+
+
+<div class = "overall_info">
+
+  <p id = "info_0" class = "hide">Every year countless electronic waste, including monitors, televisions, and laptops, have been smuggled abroad from the United States...
+</br>
+</br>
+
+    We decided to track E-waste. GPS trackers were hidden in electronic equipments shipped abroad. Trackers periodically reported the location of each device, showing the global routes of electronic waste.
+</br>
+</br>
+
+    Let's follow our trackers to explore the e-waste smuggling route.
+</br>
+</br>
+<img src="img/wide_down.png" class = "arrowdown">
+</p>
+
+<p id = "info_3">We tracked hundreds of e-waste devices, they were shipped mainly to Asia, and traveled a total of over 600,000 kilometers. </p>
+
+
+</div>
+
+
+
+
+<div class = "hidden_info">
+
+  <div id = "abouttb">
+    <div class = "firstpage page">
+      <div>
+        <p id = "abouttitle">
+          TRACKING E-WASTE SMUGGLING ROUTES
+          ACROSS THE WORLD
+        </p>
+
+        <p class = "aboutcontent">A joint project between the Basel Action Network and the MIT Senseable City Lab has led to the
+          discovery of previously unknown international electronic waste routes departing from the United
+          States.</p>
+          <p class = "aboutcontent"> </p>
+          <p class = "aboutcontent">Printer, LCD and CRT monitors were embedded with GPS trackers capable of remotely reporting
+            their location from overseas locations. These trackers revealed that most monitors were exported
+            to Asia via ports in Vietnam, China, and Malaysia.</p>
+
+
+
+            <p class = "aboutcontent1">On-the-ground investigations by BAN produced a clearer picture of these trade routes. E-waste
+              enters the country in inter-modal containers through the port of Haiphong. Interviews with locals
+              and eyewitness reports revealed that small riverboats smuggle an array of goods, including
+              e-waste.</p>
+              <p class = "aboutcontent1">While legitimate e-waste recycling helps reduce landfill contamination and raw material extraction,
+                illegal handling of electronic waste raises the risk of water and soil pollution, human illness, and
+                subsequent social costs to public health and agriculture. Our experiment demonstrates how
+                relatively cheap technology can generate unique data needed by NGOs and Interpol to track such
+                "hidden flows".</p>
+                <p class = "aboutcontent1">Since the time of our experiment, the UN Organization on Drugs and Crime has confirmed that the
+                  Mong Cai border is a primary corridor for e-waste flowing from the US and EU into China, part of
+                  an estimated US$3.75 billion market for illegal e-waste.</p>
+                  <p class = "aboutcontent1">Learn more about the smuggling trade here: Video.</p>
+
+
+
+                </div>
+                <img src="img/down.png" id = "aboutdown">
+      </div>
+
+      <div class="secondpage page">
+        <div>
+          <div>
+            <p id = "abouttitle">HOW TO USE THE APPLICATION</p>
+              <p class = "aboutcontent">Monitour is a web application that visualizes the trajectory of illicit e-waste smuggling in an interactive animation.
+              </p>
+              <div class = "tutorial"> 
+                <img src="img/toturial1.png">
+                <p><strong>01</strong> Click on a trajectory for more information</p>
+              </div>
+              <div class = "tutorial"> 
+                <img src="img/toturial2.png">
+                <p><strong>02</strong> Click the play, pause, rewind button to navigate through the animation</p>
+              </div>
+              <div class = "tutorial"> 
+                <img src="img/toturial3.png">
+                <p><strong>03</strong> Explore details about the trajectory by clicking ‘show detail’.</p>
+              </div>
+              <div class = "tutorial"> 
+                <img src="img/toturial4.png">
+                <p><strong>04</strong> To go back to the world map, click the globe.</p>
+              </div>
+
+          </div>
+          <div  class = "sublock">
+            <p id = "abouttitle">TEAM</p>
+
+            <div class = "team">
+              <h5>SENSEable City Lab :.::</h5>
+              <p>Carlo Ratti - Director</p>
+              <p>Assaf Biderman</p>
+              <p>Brandon Nadres</p>
+              <p>Chaewon Ahn</p>
+              <p>Dietmar Offenhuber</p>
+              <p>David Lee</p>
+              <p>David Perez</p>
+              <p>Fabio Duarte</p>
+              <p>James Simard</p>
+              <p>Mark Yen</p>
+              <p>Paul Bouisset</p>
+              <p>Wenzhe Peng</p>
+              <p>Weng Hong Teh</p>
+              <p>Youjin Shin</p>
+
+
+
+
+            </div>
+            <div class = "team">
+              <h5>Basel Action Network</h5>
+              <p>Jim Puckett</p>
+              <p>Colin Groark</p>
+              <p>Graham Kaplan</p>
+              <p>Angelo Godbey</p>
+              <p>Eric Hopson</p>
+              <p>Monica Huang</p>
+
+
+
+
+
+
+
+
+
+            </div>
+            <div class = "team">
+              <h5>Special thanks to</h5>
+              <p>e-Recycling of California</p>
+              <p>Richard Howlett</p>
+              <p>Eugene Lee</p>
+            </div>
+
+
+
+
+          </div>
+
+        </div>
+
+      </div>
+    <img src="img/the X2.png" id = "cross">
+
+
+
+            </div>
+
+</div>
+
+<div class="myhint">
+  <div class="hint overall"><p>Try to click/hover the paths or nodes</p></div>
+  <div class="hint globe individual"><p>You can go back to the overall map by clicking the globe</p></div>
+  <div class="hint changepath individual"><p>You can switch to other paths here.</p></div>
+  <div class="hint control individual"><p>Let's click continue/stop to control the journey.</p></div>
+  <div class="hint timeline individual"><p>Clickable timeline here.</p></div>
+  <div class="hint detail individual"><p>Try to show detail.</p></div>
+</div>
+
+<script type="text/javascript">
+mapboxgl.accessToken = 'pk.eyJ1IjoicGFudGhlcnN1cGVyIiwiYSI6Il9JRlBXMkkifQ.4VOcpN_xI1jf1XxjnIZHmw';
+
+var map = new mapboxgl.Map({
+  container: 'map',
+  style: 'mapbox://styles/mapbox/satellite-v8',
+  center: [-71.093613, 42.360277],
+  zoom: 5
+});
+
+d3.select(".mapboxgl-control-container").remove();
+
+var start = [-70, 33.928033];
+var zm_lv = 1; //how much the overall map zoom
+var mv_click = 0.1; //everytime move by 5 degree once click move
+var ani_play = true;
 
   //var bound = [[-120,10],[-60,60]];
   var bound = [
-    [-270, -20],
-    [140, 50]
+  [-270, -20],
+  [140, 50]
   ];
 
   //var start = [-122.486052, 37.830348];
+
   var map0 = new mapboxgl.Map({
     container: 'map0',
     style: 'mapbox://styles/mapbox/satellite-v8',
-    center: start,
     zoomControl: false,
     zoom: 1.7
   }).fitBounds(bound);
@@ -428,13 +506,13 @@ Since the time of our experiment, the UN Organization on Drugs and Crime has con
   var locreplay = true;
   var next_control = true;
 
-</script>
+  </script>
 
-<script src ="js/myfunction.js"></script>
-<script src ="js/myfunction_control.js"></script>
-<script src ="js/worldapp.js"></script>
+  <script src ="js/myfunction.js"></script>
+  <script src ="js/myfunction_control.js"></script>
+  <script src ="js/worldapp.js"></script>
 
-<script src ="js/multiple_data.js"></script>
-<script src ="js/mycontrol.js"></script>
+  <script src ="js/multiple_data.js"></script>
+  <script src ="js/mycontrol.js"></script>
 
 </body>

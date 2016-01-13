@@ -110,6 +110,8 @@ var averageday;
 var averagedis;
 
 var overallpath_on = false;
+var important = null;
+var important_num = 1;
 
 
 var lineFunction = d3.svg.line()
@@ -120,7 +122,6 @@ var lineFunction = d3.svg.line()
     return d.y;
   })
   .interpolate("linear");
-//addPoly([]);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -134,24 +135,6 @@ d3.tsv("new_monitor_sim.tsv", function(error, data2) {
   //each item in the data list is a dictionary, key is indicated by the head
   mymain(data2);
 });
-
-
-/*d3.tsv("https://docs.google.com/spreadsheets/d/1mIhQYArv69nmMh4qOqiDwtrcGlD-ICKJ2NGAcLhI5uE/pub?output=tsv", function(error, data) {
-    if (error) {
-      console.log("errorloading google sheet");
-      d3.tsv("new_monitor_sim.tsv", function(error, data2) {
-        //d3.csv("test.csv", function(error, data) {
-        //data is numbered by the row number... 
-        //head is not counted as a row.
-        //each item in the data list is a dictionary, key is indicated by the head
-        mymain(data2);
-      });
-
-} else {
-  mymain(data);
-}
-});*/
-
 
 
 var mymain = function(data) {
@@ -170,33 +153,28 @@ var mymain = function(data) {
     var type = data[i]["deviceType"].toLowerCase();
     var chapter = data[i]["chapter"].toLowerCase();
     var dis = +data[i]["distance"];
+    var overall =  data[i]["overall"];
 
     if (title === undefined) title = "";
     if (video === undefined) video = "";
     if (story === undefined) story = "";
     if (media === undefined) media = "";
+    if (overall === undefined) overall = "";
 
     var lat = +data[i]["latitude"],
         lng = +data[i]["longitude"];
 
-    places_multi[data[i]["deviceID"]][data[i]["timestamp"]] = [lng, lat, date, title, story, media, type, chapter, dis];
+    places_multi[data[i]["deviceID"]][data[i]["timestamp"]] = [lng, lat, date, title, story, media, type, chapter, dis,overall];
 
 
 
   };
 
   for (k in places_multi) { //clean the place list, get rid of redundant points
-
     cleanLst(places_multi[k], 0.3);
   }
 
   for (k in places_multi) {
-    //console.log(Object.size(places_multi[k]));
-
-  }
-
-  for (k in places_multi) {
-
 
     route_multi[k] = {};
     route_multi[k].type = "LineString";
@@ -241,7 +219,7 @@ var mymain = function(data) {
 
   xScale = d3.time.scale()
     .domain([minDate, maxDate])
-    .range([mapw * 0.55, mapw * 0.9]);
+    .range([700, mapw - 100]);
 
   var xAxis = d3.svg.axis()
     .scale(xScale)
@@ -256,7 +234,7 @@ var mymain = function(data) {
 
   var id = 0;
   for (key in places_multi) {
-    var addpath = d3.select("#tablepath")
+    var addpath = d3.selectAll("#tablepath")
       .append("div")
       .attr("class", "thepaths")
       .attr("id", id);
@@ -272,9 +250,6 @@ var mymain = function(data) {
     id++;
   }
 
-  /*  var localnum = ($("#tablepath").height()) / (id) * 0.76;
-    $("#tablepath div").css("height", localnum + "px");
-  */
   $(document).ready(main); //run jquery after csv loaded so path button initialized
 
   nodeNum = route.coordinates.length //the total number of nodes
@@ -302,43 +277,6 @@ var mymain = function(data) {
     .attr("stroke", "white")
     .attr("stroke-width", "3px")
     .attr("fill", "none");
-
-/*  point = svg.append("g")
-    .attr("class", "points")
-    .selectAll("g")
-    .data(d3.entries(places))
-    .enter().append("g")
-    .attr("id", function(d, i) {
-      return "point" + i;
-    })
-    .attr("class", "mypoints")
-    .attr("transform", function(d) {
-      return "translate(" + projection(d.value) + ")";
-    })
-    .on("click", function(d, i) {
-      nowNum = i;
-      updateContent(nowNum);
-      moveToggle = false;
-      cont = true; //loop not started
-      count = oneMove_default - 0.01; //to measure the interval
-      flyto(getNode(places, nowNum), 3);
-    });
-
-
-  point.append("circle") //show circle on each point
-    .attr("r", 1.5);*/
-
-  /*  point.attr("add", function(d,i){
-      revGeocoding(d.value[1],d.value[0],"point"+i);
-    });
-*/
-  /*  point.append("text") //show text on each point
-      .attr("y", 10)
-      .attr("dy", ".71em")
-      .attr("class", "locName")
-      .text(function(d) {
-        return d.key.split("_")[1].split(" ")[0].split(",")[0];
-      });*/
 
   track = svg.append("g") //red circle
     .append("circle")
@@ -410,18 +348,18 @@ var mymain = function(data) {
 
 
   d3.select(".xaxis").append("rect")
-    .attr("x", mapw * 0.5)
+    .attr("x", 650)
     .attr("y", 10)
-    .attr("width", mapw * 0.45)
+    .attr("width", mapw -700)
     .attr("height", 40)
     .attr("stroke", "none")
     .attr("fill", "rgb(22,27,33)");
 
 
   d3.select(".xaxis").append("line")
-    .attr("x1", mapw * 0.5)
+    .attr("x1", 650)
     .attr("y1", 30)
-    .attr("x2", mapw * 0.95)
+    .attr("x2", mapw - 50)
     .attr("y2", 30)
     .attr("stroke-width", 1)
     .attr("stroke", "rgb(20,20,20)");
@@ -476,18 +414,8 @@ var mymain = function(data) {
 
       context.clearRect(0, 0, width, height);
 
-      //auto adjust control menu
-      var mediah = 0;
-      var storyh = $("#story p").height();
-
-      if ($("#media iframe").attr("src").length > 0)
-        mediah = $("#media iframe").height();
-      else
-        mediah = $("#media img").height();
-      $("#control").css("height", (mediah + storyh + 220));
-      $("#control").css("top", (60 + ($("#map").height() - 60 - (250 - detail_control * 150)) / 2 - $("#control").height() / 2));
-      $("#story").css("top", (mediah + 120));
-
+      $("#story").css("width", ($("#map").width() - 600-326-50));
+      
       trackscale += 0.2;
       lat_old = getNode(places, (nowNum - 1 + nodeNum) % nodeNum)[0];
       lng_old = getNode(places, (nowNum - 1 + nodeNum) % nodeNum)[1];
@@ -495,7 +423,6 @@ var mymain = function(data) {
       //the target of this move
       lat = getNode(places, nowNum)[0];
       lng = getNode(places, nowNum)[1];
-
 
       var dis = distanceSQ([lat_old, lng_old], [lat, lng]);
 
@@ -524,7 +451,7 @@ var mymain = function(data) {
       var keys = Object.keys(places);
       var pre_important;
       var next_important;
-      var important = places[keys[nowNum]][3].length + places[keys[nowNum]][4].length + places[keys[nowNum]][5].length;
+      important = places[keys[nowNum]][3].length + places[keys[nowNum]][4].length + places[keys[nowNum]][5].length;
       if (pre_num != 0 && next_num != 0) { //those that are in the middle
         pre_important = places[keys[pre_num]][3].length + places[keys[pre_num]][4].length + places[keys[pre_num]][5].length;
         next_important = places[keys[next_num]][3].length + places[keys[next_num]][4].length + places[keys[next_num]][5].length;
@@ -577,17 +504,18 @@ var mymain = function(data) {
           }
 
           var keys = Object.keys(places);
-          var important = places[keys[nowNum]][3].length + places[keys[nowNum]][4].length + places[keys[nowNum]][5].length;
-          if (important > 0) important = true;
-          else important = false;
+          var thisimportant = places[keys[nowNum]][3].length + places[keys[nowNum]][4].length + places[keys[nowNum]][5].length;
+          if (thisimportant > 0) thisimportant = true;
+          else thisimportant = false;
 
-          if (!important) { //don't have additional information
+          if (!thisimportant) { //don't have additional information  
             if (nowNum + 1 != nodeNum) {
               count = 0;
               nowNum = nowNum + 1; //next node to target
               nowNum = nowNum % nodeNum; //cycle the loop
               moveToggle = true;
-            } else {
+            } else {//this don't work for important nodes!!!!!!!!!!!!!!!!!!
+              console.log("finishsign");
               $("#finishsign").fadeIn(2000);
 
             }
@@ -643,11 +571,7 @@ var mymain = function(data) {
         .datum(pastData)
         .attr("class", "pastroute")
         .attr("d", patho);
-      /*      pastRoute_blur //create current route
-              .datum(pastData)
-              .attr("class", "pastroute_blur")
-              .attr("d", patho);
-      */
+
       var myD = patho(routeRam); //redo the projection
 
       myroute //reset the route drawn on the map
@@ -715,8 +639,6 @@ var mymain = function(data) {
       timeMark
         .attr("transform", "translate(" + nowtime + "," + (20 + 2.5) + ")");
 
-      keys = Object.keys(places);
-      important = places[keys[nowNum]][3].length + places[keys[nowNum]][4].length + places[keys[nowNum]][5].length;
       if (pre_num != 0 && next_num != 0) { //those that are in the middle
         pre_important = places[keys[pre_num]][3].length + places[keys[pre_num]][4].length + places[keys[pre_num]][5].length;
         next_important = places[keys[next_num]][3].length || places[keys[next_num]][4].length || places[keys[next_num]][5].length;
@@ -730,8 +652,6 @@ var mymain = function(data) {
 
       if (nowNum + 1 == nodeNum) important = true;
 
-      //console.log(pre_important,important,next_important);
-      //console.log(phasePercentage);
 
       if (pre_important && (!important)) { //need to zoom out and stay zooming out
         //console.log("zoomout");
@@ -757,14 +677,6 @@ var mymain = function(data) {
         flyNozoom(p_r, phasePercentage, dis, zoombase);
 
       }
-
-
-
-/*      point.attr("transform", function(d) { //rotate the nodes
-        return "translate(" + projection(d.value) + ")";
-      });*/
-
-
 
       var closeRate = Math.abs(0.5 - phasePercentage);
 
@@ -793,25 +705,16 @@ var mymain = function(data) {
       var linedata = lineFunction(reptojectMap(newlst));
       route_map
         .attr("d", linedata);
-      /*      route_map_blur
-              .attr("d", linedata);
-      */
 
       if (nowNum != 1) {
 
         var linedata = lineFunction(reptojectMap(fixloop(pastData.coordinates)));
         pastRoute_map //create current route
           .attr("d", linedata);
-        /*        pastRoute_map_blur //create current route
-                  .attr("d", linedata);
-        */
       } else {
         var linedata = lineFunction([]);
         pastRoute_map //create current route
           .attr("d", linedata);
-        /*        pastRoute_map_blur //create current route
-                  .attr("d", linedata);
-        */
       }
 
       track.attr("r", 1 * (trackscale % 4) + 1); //change the tracker's r according to closerate
@@ -835,14 +738,6 @@ var mymain = function(data) {
       context.strokeStyle = "rgb(25,25,25)";
       context.stroke();
 
-
-      /*      context.beginPath(); //grid
-            path(grid);
-            context.lineWidth = .2;
-            context.strokeStyle = "rgba(119,119,119,.5)";
-            context.stroke();
-      */
-
     });
   });
 
@@ -864,36 +759,6 @@ var update = function(current) {
 
   CuRoute
     .attr("class", "curroute")
-    /*  CuRoute_blur
-        .attr("class", "curroute_blur")
-    */
-
-/*  $(".points").remove();
-  point = svg.append("g")
-    .attr("class", "points")
-    .selectAll("g")
-    .data(d3.entries(places))
-    .enter().append("g")
-    .attr("id", function(d, i) {
-      return "point" + i;
-    })
-    .attr("class", "mypoints")
-    .attr("transform", function(d) {
-      return "translate(" + projection(d.value) + ")";
-    })
-    .on("click", function(d, i) {
-      nowNum = i;
-      updateContent(nowNum);
-      moveToggle = false;
-      cont = false; //loop not started
-      count = oneMove_default - 0.0001; //to measure the interval
-      flyto(getNode(places, nowNum), 3);
-
-    });
-
-  point.append("circle") //show circle on each point
-    .attr("r", 1.5);
-*/
 
   $(".track").remove();
   track = svg.append("g") //red circle
@@ -948,12 +813,9 @@ var update = function(current) {
       flyto(getNode(places, nowNum), 3);
       next_control = true;
 
-
       if (nowNum === 0) {
         nowNum = 1;
         count = 0;
-
-
       }
 
     });
@@ -977,15 +839,6 @@ var update = function(current) {
         .attr("y", 22)
         .attr("height", 10);
     });
-
-
-  /*  point.append("text") //show text on each point
-      .attr("y", 10)
-      .attr("dy", ".71em")
-      .attr("class", "locName")
-      .text(function(d) {
-        return d.key.split("_")[1].split(" ")[0].split(",")[0];
-      });*/
 
   nodeNum = route.coordinates.length; //the total number of nodes
   nowNum = 1; //current node to target to
